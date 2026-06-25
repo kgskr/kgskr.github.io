@@ -10,8 +10,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 
 <BaseLayout title="기록실">
   <section class="hero">
-    <h1 class="lede">잘 만든 것들에 대한 기록.</h1>
-    <p class="sub">웹, 데이터베이스, 그리고 더 단순한 코드를 향한 노력에 관하여.</p>
+    <h1 class="lede">꾸준히 쌓아가려는 기록.</h1>
+    <p class="sub">뭐가 되었든 나눌 수 있는 것들을 남기고 싶습니다.</p>
   </section>
   <div class="list">
     {posts.map((post) => <PostCard post={post} />)}
