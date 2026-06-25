@@ -1,0 +1,360 @@
+/* ============================================================
+   기록실 — 전역 스타일 (C · 여백 / 클린 산세리프)
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* ── 라이트 테마 토큰 ── */
+  --bg: #ffffff;
+  --ink: #18181b;
+  --muted: #74747d;
+  --accent: #4f46e5;
+  --line: #ececef;
+  --code: #f4f4f7;
+  --headbg: rgba(255, 255, 255, 0.78);
+}
+
+html.dark {
+  /* ── 다크 테마 토큰 ── */
+  --bg: #0b0b0e;
+  --ink: #ededf1;
+  --muted: #8a8a94;
+  --accent: #8b93f8;
+  --line: rgba(255, 255, 255, 0.09);
+  --code: #141419;
+  --headbg: rgba(11, 11, 14, 0.72);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+/* ── 헤더 ── */
+.head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: 62px;
+  background: var(--headbg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.hin {
+  max-width: 720px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mark {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.025em;
+  text-decoration: none;
+  color: var(--ink);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.navlink {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.18s;
+}
+.navlink:hover,
+.navlink.on {
+  color: var(--ink);
+}
+.tg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  transition: border-color 0.2s;
+}
+.tg:hover {
+  border-color: var(--accent);
+}
+
+/* ── 본문 레이아웃 ── */
+.main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 104px 24px 36px;
+  animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── 푸터 ── */
+.foot {
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+}
+.fin {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 28px 24px 52px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+/* ── 히어로 ── */
+.hero {
+  padding: 34px 0 16px;
+}
+.lede {
+  font-size: 38px;
+  line-height: 1.24;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  margin: 0;
+  max-width: 560px;
+}
+.sub {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* ── 글 목록 ── */
+.list {
+  padding: 8px 0 0;
+}
+.item {
+  display: block;
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+}
+.pdate {
+  font-size: 12.5px;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+.ptitle {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.36;
+  margin: 12px 0 9px;
+  letter-spacing: -0.025em;
+  transition: color 0.18s;
+}
+.item:hover .ptitle {
+  color: var(--accent);
+}
+.pex {
+  font-size: 15px;
+  line-height: 1.68;
+  color: var(--muted);
+  max-width: 580px;
+}
+.pmeta {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  font-size: 12px;
+  color: var(--accent);
+  border: 1px solid var(--line);
+  padding: 4px 11px;
+  border-radius: 100px;
+}
+
+/* ── 글 상세 ── */
+.back {
+  display: inline-block;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13.5px;
+  margin-bottom: 30px;
+  transition: color 0.18s;
+}
+.back:hover {
+  color: var(--accent);
+}
+.amt {
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  margin-bottom: 14px;
+}
+.atitle {
+  font-size: 36px;
+  line-height: 1.22;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  margin: 0 0 28px;
+}
+
+/* ── 마크다운 본문 (prose) ── */
+.prose {
+  font-size: 16.5px;
+  line-height: 1.85;
+}
+.prose > p:first-of-type {
+  font-size: 18px;
+  line-height: 1.8;
+}
+.prose p {
+  margin: 0 0 22px;
+}
+.prose h2 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 42px 0 18px;
+}
+.prose h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 32px 0 14px;
+}
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose ul,
+.prose ol {
+  margin: 0 0 22px;
+  padding-left: 22px;
+}
+.prose li {
+  margin: 0 0 10px;
+}
+.prose blockquote {
+  margin: 28px 0;
+  padding: 6px 0 6px 22px;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+}
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 40px 0;
+}
+.prose img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* 인라인 코드 */
+.prose :not(pre) > code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88em;
+  background: var(--code);
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+/* 코드 블록 (Shiki) */
+.prose pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  line-height: 1.7;
+  padding: 20px 22px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  margin: 0 0 24px;
+  overflow: auto;
+}
+/* 다크 모드에서 Shiki 두 번째 테마로 전환 */
+html.dark .astro-code,
+html.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+/* ── 이전/다음 글 ── */
+.postnav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 50px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.pnl {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 14px;
+  transition: color 0.18s;
+}
+.pnl:hover {
+  color: var(--accent);
+}
+
+/* ── About ── */
+.abody {
+  padding-top: 6px;
+}
+.links {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+.lnk {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 15px;
+}
+.lnk:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .lede,
+  .atitle {
+    font-size: 30px;
+  }
+  .main {
+    padding-top: 92px;
+  }
+}

@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../utils/format';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return sorted.map((post, i) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      prev: sorted[i + 1] ?? null, // 더 오래된 글
+      next: sorted[i - 1] ?? null, // 더 최신 글
+    },
+  }));
+}
+
+const { post, prev, next } = Astro.props;
+const { title, description, pubDate, tags, readingTime } = post.data;
+const { Content } = await render(post);
+const base = import.meta.env.BASE_URL;
+
+const meta = [formatDate(pubDate), ...tags, readingTime].filter(Boolean).join(' · ');
+---
+
+<BaseLayout title={`${title} — 기록실`} description={description}>
+  <article>
+    <a class="back" href={base}>← 목록으로</a>
+    <div class="amt">{meta}</div>
+    <h1 class="atitle">{title}</h1>
+    <div class="prose">
+      <Content />
+    </div>
+
+    <nav class="postnav">
+      {prev ? <a class="pnl" href={`${base}blog/${prev.id}/`}>← {prev.data.title}</a> : <span></span>}
+      {next ? <a class="pnl" href={`${base}blog/${next.id}/`}>{next.data.title} →</a> : <span></span>}
+    </nav>
+  </article>
+</BaseLayout>

@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="기록실">
+  <section class="hero">
+    <h1 class="lede">잘 만든 것들에 대한 기록.</h1>
+    <p class="sub">웹, 데이터베이스, 그리고 더 단순한 코드를 향한 노력에 관하여.</p>
+  </section>
+  <div class="list">
+    {posts.map((post) => <PostCard post={post} />)}
+  </div>
+</BaseLayout>

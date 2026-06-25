@@ -1,0 +1,18 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const base = import.meta.env.BASE_URL;
+const path = Astro.url.pathname;
+const isAbout = path.replace(/\/$/, '').endsWith('/about');
+---
+
+<header class="head">
+  <div class="hin">
+    <a class="mark" href={base}>기록실</a>
+    <nav class="nav">
+      <a class:list={['navlink', { on: !isAbout }]} href={base}>글</a>
+      <a class:list={['navlink', { on: isAbout }]} href={`${base}about/`}>소개</a>
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>
