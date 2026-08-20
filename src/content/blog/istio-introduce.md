@@ -22,6 +22,9 @@ draft: true
 
  쿠버네티스 환경에서 서비스메시를 구현하기 위한 제품에는 지구대장 [Istio](https://istio.io/)와 기타 [Linkerd](https://linkerd.io/), [Cilium](https://cilium.io/use-cases/service-mesh/) 가 있다고 합니다. Istio는 지구대장 답게 가장 많은곳에서 사용되고 높은 성숙도를 가진 프로젝트입니다. 무려 [CNCF](https://www.cncf.io/) 의 졸업인증(graduation)을 2023년에 받아내었죠.(Linkerd, Cilium 도 동일) 
 
+제가 아는 티오라고는 [네이티오](https://pokemon.fandom.com/ko/wiki/%EB%84%A4%EC%9D%B4%ED%8B%B0%EC%98%A4_(%ED%8F%AC%EC%BC%93%EB%AA%AC))밖에 없지만, 먹고살기 위해서 가장 널리 사용되는 이스티오라는 친구와도 친해져야 하는 것 같습니다.
 
-제가 아는 티오라고는 [네이티오](https://pokemon.fandom.com/ko/wiki/%EB%84%A4%EC%9D%B4%ED%8B%B0%EC%98%A4_(%ED%8F%AC%EC%BC%93%EB%AA%AC))밖에 없지만, 먹고살기 위해서는 이 이스티오라는 친구와 친해져야 하는 것 같습니다.
+---
+
+Istio는 서비스메시입니다. 서비스 메시가 트래픽을 훔쳐 모니터링을 할 수 있게 한다고 했는데, 이 트래픽을 훔치는 과정에서 모니터링 이외에 다양한 일을 할 수 있게 해줍니다.
 
