@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { CATEGORIES, getPosts, type Category } from '../utils/posts';
+
+// /tech/ 와 /talk/ 두 페이지를 만듭니다.
+export function getStaticPaths() {
+  return (Object.keys(CATEGORIES) as Category[]).map((category) => ({ params: { category } }));
+}
+
+const category = Astro.params.category as Category;
+const { label } = CATEGORIES[category];
+const posts = await getPosts(category);
+---
+
+<BaseLayout title={`${label} — 기록실`} active={category}>
+  <section class="hero">
+    <h1 class="lede">{label}</h1>
+    <p class="sub">{posts.length > 0 ? `글 ${posts.length}편.` : '아직 글이 없습니다.'}</p>
+  </section>
+  <div class="list">
+    {posts.map((post) => <PostCard post={post} />)}
+  </div>
+</BaseLayout>

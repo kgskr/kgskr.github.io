@@ -1,11 +1,11 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { formatDate } from '../../utils/format';
+import { categoryOf, getPosts } from '../../utils/posts';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const sorted = await getPosts();
 
   return sorted.map((post, i) => ({
     params: { slug: post.id },
@@ -25,7 +25,7 @@ const base = import.meta.env.BASE_URL;
 const meta = [formatDate(pubDate), ...tags, readingTime].filter(Boolean).join(' · ');
 ---
 
-<BaseLayout title={`${title} — 기록실`} description={description}>
+<BaseLayout title={`${title} — 기록실`} description={description} active={categoryOf(post)}>
   <article>
     <a class="back" href={base}>← 목록으로</a>
     <div class="amt">{meta}</div>

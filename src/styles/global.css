@@ -350,6 +350,9 @@ html.dark .astro-code span {
 }
 
 @media (max-width: 640px) {
+  .nav {
+    gap: 14px;
+  }
   .lede,
   .atitle {
     font-size: 30px;

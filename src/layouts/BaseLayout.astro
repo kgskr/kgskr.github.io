@@ -6,9 +6,11 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  /** 헤더에서 강조할 탭. 생략하면 경로로 유추합니다. */
+  active?: string;
 }
 
-const { title, description = '기록실 — 개발과 시스템에 대한 기록' } = Astro.props;
+const { title, description = '기록실 — 개발과 시스템에 대한 기록', active } = Astro.props;
 ---
 
 <!doctype html>
@@ -45,7 +47,7 @@ const { title, description = '기록실 — 개발과 시스템에 대한 기록
     </script>
   </head>
   <body>
-    <Header />
+    <Header active={active} />
     <main class="main">
       <slot />
     </main>

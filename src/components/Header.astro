@@ -1,17 +1,32 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import { CATEGORIES } from '../utils/posts';
+
+interface Props {
+  /** 강조할 탭: 'all' | 'tech' | 'talk' | 'about'. 없으면 현재 경로에서 유추합니다. */
+  active?: string;
+}
 
 const base = import.meta.env.BASE_URL;
-const path = Astro.url.pathname;
-const isAbout = path.replace(/\/$/, '').endsWith('/about');
+const pathname = Astro.url.pathname;
+const rel = pathname.startsWith(base) ? pathname.slice(base.length) : pathname;
+const section = rel.replace(/^\/+|\/+$/g, '').split('/')[0]; // '' | 'tech' | 'talk' | 'about' | 'blog'
+const active = Astro.props.active ?? (section === '' ? 'all' : section);
 ---
 
 <header class="head">
   <div class="hin">
     <a class="mark" href={base}>기록실</a>
     <nav class="nav">
-      <a class:list={['navlink', { on: !isAbout }]} href={base}>글</a>
-      <a class:list={['navlink', { on: isAbout }]} href={`${base}about/`}>소개</a>
+      <a class:list={['navlink', { on: active === 'all' }]} href={base}>모든글</a>
+      {
+        Object.entries(CATEGORIES).map(([key, { label }]) => (
+          <a class:list={['navlink', { on: active === key }]} href={`${base}${key}/`}>
+            {label}
+          </a>
+        ))
+      }
+      <a class:list={['navlink', { on: active === 'about' }]} href={`${base}about/`}>소개</a>
       <ThemeToggle />
     </nav>
   </div>
