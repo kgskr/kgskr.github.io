@@ -3,7 +3,7 @@ title: '장송'
 description: '떠난 이들을..'
 pubDate: 2026-09-11
 tags: ['기술']
-readingTime: '2분'
+readingTime: '3분'
 draft: false
 ---
 *유사 기술블로그 행세를 위한 글입니다. 가볍게 읽어주세요*
